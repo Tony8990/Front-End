@@ -1,0 +1,74 @@
+@mixin clearfix() {
+  &:after{
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.pannello
+{
+  h2{
+    text-align: center;
+  }
+ 
+  width:100%;
+  margin: 20px auto 0 auto;
+  padding: 20px;
+  width: 50%;
+  
+  form {
+        box-shadow: 0 0 3px 2px black;
+        @include clearfix();    
+        padding: 20px; 
+        height: auto;
+    input
+    {
+      text-align: center;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid black;
+      margin-bottom:20px;
+    }
+}
+}
+$color-primary: blue;
+$color-secondary: yellow;
+$base-fontsize: 16px;
+
+
+@mixin button-hover($color) {
+  background: lighten($color, 40%);
+}
+
+@mixin transition($time){
+  transition: all $time ease-in-out;
+}
+
+@function em-converter($px) { 
+  @if unitless($px) {
+    @error "Please specify a pixel unit"
+  }
+  @return ($px / $base-fontsize) * 1em;
+}
+
+button {
+  @include clearfix();
+  border: 1px solid black;
+  border-radius: 15px;
+  background:white;
+  width: em-converter(100px);
+  height: em-converter(30px);
+  float: right;
+  @include transition(1000ms);
+  p {
+    color: black;
+  }
+  &:hover {
+    color: white;
+    background: green;
+  }
+  @include clearfix();
+}
+  
+
